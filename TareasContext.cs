@@ -17,13 +17,16 @@ class TareasContext:DbContext
         {
             cat.ToTable("tb_categoria");
             cat.HasKey(c => c.CategoriaId);
+            cat.Property(c => c.CategoriaId).ValueGeneratedOnAdd();
             cat.Property(c => c.Nombre).IsRequired().HasMaxLength(150);
             cat.Property(c => c.Descripcion);
+            cat.Property(c => c.peso);
         });
 
         modelBuilder.Entity<Tarea>(tar=>{
             tar.ToTable("pr_tarea");
             tar.HasKey(c => c.TareaId);
+            tar.Property(c => c.TareaId).ValueGeneratedOnAdd();
             tar.HasOne(c => c.Categoria).WithMany(c => c.Tareas).HasForeignKey(c => c.CategoriaId);
             tar.Property(c => c.Titulo).IsRequired().HasMaxLength(200);
             tar.Property(c => c.Descripcion);

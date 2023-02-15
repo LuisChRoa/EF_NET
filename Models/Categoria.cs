@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace  EF_NET.Models;
 public class Categoria
@@ -10,5 +11,8 @@ public class Categoria
     // [MaxLength (150)]
     public string Nombre { get; set; }
     public string Descripcion { get; set; }
+    public string peso { get; set; }
+
+    [JsonIgnore]
     public virtual ICollection<Tarea> Tareas { get; set; }
 }
